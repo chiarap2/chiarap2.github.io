@@ -3,404 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Profile | Professional Researcher</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    
+    <title>Academic Profile | Researcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;800&display=swap" rel="stylesheet"> 
     <style>
         :root {
-            --primary-color: #1a2a3a;
-            --accent-color: #4a90e2;
-            --bg-light: #f4f7f6;
-            --text-dark: #2d3436;
-            --text-muted: #636e72;
-            --white: #ffffff;
+            --bg-color: #fdfdfb; 
+            --primary-text: #2F2E2E;
+            --accent-color: #7D7D7D;
+            --link-color: #555fbc; 
+            --section-padding: 100px 12%;
+            --dark-overlay: rgba(0, 0, 0, 0.7); /* Aumentato da 0.5 a 0.7 per contrasto */
+            --light-overlay: rgba(255, 255, 255, 0.9); 
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Lato', sans-serif;
-            line-height: 1.7;
-            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            line-height: 1.8;
             scroll-behavior: smooth;
-            background-color: var(--white);
+        }
+
+        h2, h3 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* --- Navigation --- */
         nav {
             position: fixed;
-            top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1.2rem 10%;
+            background: transparent;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            justify-content: center;
+            padding: 25px 0;
             z-index: 1000;
+            transition: all 0.3s ease-in-out;
         }
 
-        nav .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-            color: var(--primary-color);
+        nav.scrolled {
+            background-color: var(--light-overlay);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav a {
             text-decoration: none;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2.5rem;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 400;
-            font-size: 0.9rem;
+            color: white; /* Inizialmente bianco per risaltare sulla foto */
+            margin: 0 20px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
+            transition: 0.3s;
+            font-weight: 600;
         }
 
-        nav ul li a:hover {
-            color: var(--accent-color);
-        }
+        nav.scrolled a { color: var(--primary-text); }
+        nav a:hover { color: var(--link-color); }
 
-        /* --- Layout Sections --- */
-        section {
-            padding: 120px 15% 80px;
-            min-height: 60vh;
-        }
-
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
+        /* --- Cover Section URBAN STYLE --- */
+        #cover {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            /* Immagine europea: Tram e mobilità urbana */
+            background-image: url('cover.jpeg');
+            background-size: cover;
+            background-position: center;
             position: relative;
-            padding-bottom: 10px;
         }
 
-        h2::after {
+        #cover::before {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent-color);
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Questo scurisce l'immagine per far leggere il testo */
+            background: rgba(0, 0, 0, 0.55); 
+            z-index: 1;
         }
 
-        /* --- About/Home Section --- */
-        #home {
+        #cover-content {
+            position: relative;
+            z-index: 2; /* Importante: deve essere sopra l'overlay */
+            max-width: 2000px;
+            padding: 20px;
+        }
+
+        #cover-content p {
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            font-weight: 600; /* Via di mezzo: né bold né troppo sottile */
+            font-size: 2rem;
+            line-height: 1.6;
+            letter-spacing: 6px; /* Effetto urban/minimal */
+            text-transform: uppercase;
+            margin: 0;
+        }
+        
+        /* --- Profile Section --- */
+        #profile {
             display: flex;
+            min-height: 80vh;
             align-items: center;
-            justify-content: space-between;
-            background-color: var(--bg-light);
-            gap: 50px;
+            padding: var(--section-padding);
+            gap: 60px;
+            background-color: var(--bg-color);
         }
 
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-        }
+        .profile-content { flex: 1; }
+        .profile-image { flex: 1; text-align: right; }
 
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
+        .profile-image img {
+            width: 100%;
+            max-width: 450px;
+            filter: grayscale(100%); /* Stile pulito/urban */
+            border: 1px solid #eee;
+            transition: 0.5s;
         }
+        .profile-image img:hover { filter: grayscale(0%); }
 
-        .profile-img {
-            width: 320px;
-            height: 400px;
-            background: #dfe6e9;
-            object-fit: cover;
-            border-radius: 4px;
-            box-shadow: 20px 20px 0px var(--accent-color);
-        }
+        .profile-content h1 { font-size: 3rem; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; }
+        .profile-content .subtitle { font-size: 1.1rem; color: var(--accent-color); margin-bottom: 30px; font-weight: 400; letter-spacing: 1px; }
 
         /* --- CV Section --- */
-        .cv-container {
-            border-left: 1px solid #ddd;
-            padding-left: 30px;
-            margin-left: 10px;
-        }
+        section { padding: var(--section-padding); border-bottom: 1px solid #eee; }
+        h2 { font-size: 2rem; margin-bottom: 60px; text-align: center; }
 
-        .cv-item {
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .cv-item::before {
-            content: '';
-            position: absolute;
-            left: -36px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            border: 3px solid white;
-        }
-
-        .cv-date {
-            font-weight: bold;
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .cv-content h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Publications Section --- */
-        #publications {
-            background-color: var(--white);
-        }
-
-        .pub-list {
-            list-style: none;
-        }
-
-        .pub-list li {
-            padding: 2rem;
-            border-bottom: 1px solid #eee;
-            transition: all 0.3s ease;
-        }
-
-        .pub-list li:hover {
-            background: var(--bg-light);
-            transform: translateX(10px);
-        }
-
-        .pub-year {
-            background: var(--primary-color);
-            color: white;
-            padding: 2px 10px;
-            font-size: 0.8rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
+        .cv-category { margin-bottom: 60px; }
+        .cv-category-title { 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            color: var(--link-color); 
+            margin-bottom: 35px;
+            border-bottom: 2px solid #000;
             display: inline-block;
+            padding-bottom: 5px;
         }
 
-        .pub-title {
-            display: block;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
+        .cv-item { display: flex; margin-bottom: 45px; }
+        .cv-date { width: 220px; font-size: 0.85rem; font-weight: 700; color: var(--accent-color); }
+        .cv-info { flex: 1; }
+        .cv-info h3 { font-size: 1.2rem; margin-bottom: 5px; color: #000; }
+        .cv-info .institution { font-style: italic; margin-bottom: 10px; display: block; color: var(--accent-color); }
+        
+        .cv-details { font-size: 0.9rem; margin-top: 10px; color: #444; }
+        .cv-details ul { margin-left: 18px; margin-top: 10px; }
 
-        .pub-authors {
-            color: var(--text-muted);
-            font-style: italic;
+        /* --- Publications --- */
+        .pub-list { list-style: none; }
+        .pub-item { 
+            padding: 25px 0; 
+            border-bottom: 1px solid #eee; 
+            transition: 0.2s;
         }
-
-        .pub-venue {
-            font-weight: bold;
-            color: var(--text-dark);
-            margin-top: 0.5rem;
-            display: block;
-        }
-
-        .pub-link {
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            color: var(--accent-color);
-            font-weight: bold;
-            font-size: 0.85rem;
-            border: 1px solid var(--accent-color);
-            padding: 4px 12px;
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-
-        .pub-link:hover {
-            background: var(--accent-color);
-            color: white;
-        }
+        .pub-item:hover { background: rgba(0,0,0,0.02); padding-left: 10px; }
+        .pub-item .year { font-size: 1.1rem; color: var(--link-color); }
+        .pub-item .title { font-weight: 700; font-size: 1.1rem; display: block; margin: 5px 0; color: var(--primary-text); }
+        .pub-item .authors { font-size: 0.9rem; color: var(--accent-color); display: block; margin-bottom: 5px; }
+        .pub-item .venue { font-style: italic; color: #000; font-size: 0.85rem; font-weight: 600; }
 
         /* --- Footer --- */
-        footer {
-            background: var(--primary-color);
-            color: white;
-            padding: 4rem 10%;
-            text-align: center;
-        }
+        footer { padding: 40px 0; text-align: center; background: #000; color: #fff; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
 
-        .social-links a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            opacity: 0.7;
-        }
-
-        .social-links a:hover { opacity: 1; }
-
-        #loading-msg {
-            font-style: italic;
-            color: var(--text-muted);
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 900px) {
-            section { padding: 100px 5% 50px; }
-            #home { flex-direction: column-reverse; text-align: center; }
-            .hero-text h1 { font-size: 2.5rem; }
-            nav ul { display: none; } /* Semplificato per brevità */
+        @media (max-width: 992px) {
+            #cover-content p { font-size: 2.5rem; }
+            #profile { flex-direction: column; text-align: center; }
+            .profile-image { order: -1; text-align: center; }
+            .cv-item { flex-direction: column; }
+            .cv-date { margin-bottom: 10px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">CHIARA PUGLIESE</a>
-        <ul>
-            <li><a href="#home">About</a></li>
-            <li><a href="#cv">Experience</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <a href="#cover">Home</a>
+        <a href="#profile">About</a>
+        <a href="#cv">Experience</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
     </nav>
 
-    <section id="home">
-        <div class="hero-text">
-            <h1>Researcher in <br>Computer Science.</h1>
-            <p>
-                Hello, I am a dedicated researcher at <strong>The University of Research</strong>. 
-                My work focuses on developing sustainable algorithms and exploring the future of 
-                Human-Computer Interaction.
-            </p>
+    <section id="cover">
+        <div id="cover-content">
+            <p>Everything is related to everything else, <br>but near things are more related <br>than distant things</p>
         </div>
-        <div class="hero-image">
-            <img src="myphoto.jpg" alt="Profile Photo" class="profile-img">
+    </section>
+
+    <section id="profile">
+        <div class="profile-content">
+            <h1>Chiara Pugliese</h1>
+            <p class="subtitle">Researcher @ IIT-CNR | Ph.D. in Computer Science</p>
+            <p>I am a researcher specializing in <strong>semantic enrichment</strong> and <strong>summarization of mobility data</strong>. My work explores the intersection of AI and spatio-temporal analysis to better represent urban environments.</p>
+        </div>
+        <div class="profile-image">
+            <img src="myphoto.jpg" alt="Profile">
         </div>
     </section>
 
     <section id="cv">
         <h2>Curriculum Vitae</h2>
-        <div class="cv-container">
+
+        <div class="cv-category">
+            <h4 class="cv-category-title">Work Experience</h4>
+            
             <div class="cv-item">
-                <span class="cv-date">2021 — PRESENT</span>
-                <div class="cv-content">
-                    <h3>Senior Researcher</h3>
-                    <p>Advanced AI Lab, Tech Institute. Leading a team of 5 PhD students in machine learning optimization.</p>
+                <div class="cv-date">29/12/2024 - Present</div>
+                <div class="cv-info">
+                    <h3>Researcher (400.21 IIT PNRR)</h3>
+                    <span class="institution">Institute of Informatics and Telematics (IIT-CNR), Pisa</span>
                 </div>
             </div>
+
             <div class="cv-item">
-                <span class="cv-date">2018 — 2021</span>
-                <div class="cv-content">
-                    <h3>Doctor of Philosophy (PhD)</h3>
-                    <p>University of Science. Dissertation title: "Analyzing Complex Network Dynamics in Modern Systems".</p>
+                <div class="cv-date">01/05/2024 - 29/12/2024</div>
+                <div class="cv-info">
+                    <h3>Graduate Fellow (AR ISTI 023/2023)</h3>
+                    <span class="institution">Information Science and Technology Institute (ISTI-CNR), Pisa</span>
                 </div>
             </div>
+
             <div class="cv-item">
-                <span class="cv-date">2016 — 2018</span>
-                <div class="cv-content">
-                    <h3>Master of Science</h3>
-                    <p>International University. Graduated with Honors in Software Engineering.</p>
+                <div class="cv-date">01/06/2021 - 30/04/2024</div>
+                <div class="cv-info">
+                    <h3>Graduate Fellow (AR ISTI 016/2021)</h3>
+                    <span class="institution">Information Science and Technology Institute (ISTI-CNR), Pisa</span>
                 </div>
             </div>
+        </div>
+
+        <div class="cv-category">
+            <h4 class="cv-category-title">Education</h4>
+
+            <div class="cv-item">
+                <div class="cv-date">2021 - 2025</div>
+                <div class="cv-info">
+                    <h3>Ph.D. in Computer Science</h3>
+                    <span class="institution">University of Pisa, Italy</span>
+                    <div class="cv-details">
+                        <strong>Thesis:</strong> Advanced Methods for Semantic Enrichment and Summarization of Mobility Data<br>
+                        <strong>Supervisors:</strong> Prof. Fabio Pinelli, Dott.ssa Chiara Renso
+                        <ul>
+                            <li>Study of semantic data's influence on spatio-temporal analysis.</li>
+                            <li>Research of new AI methods for high-dimensional urban data.</li>
+                            <li>Application of Large Language Models (LLMs) to represent urban regions.</li>
+                            <li>Evaluation of deep learning model performances.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-item">
+                <div class="cv-date">2018 - 2020</div>
+                <div class="cv-info">
+                    <h3>M.Sc. Digital Humanities</h3>
+                    <span class="institution">University of Pisa, Italy</span>
+                    <div class="cv-details">
+                        <strong>Thesis:</strong> "Dis-: not a problem! Alla ricerca dei red flag della disortografia"<br>
+                        <strong>Supervisor:</strong> Prof.ssa Susanna Pelagatti<br>
+                        <strong>Grade:</strong> 110/110 cum laude<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cv-item">
+            <div class="cv-date">2015 - 2018</div>
+            <div class="cv-info">
+                <h3>B.Sc. Digital Humanities</h3>
+                <span class="institution">University of Pisa, Italy</span>
+                <div class="cv-details">
+                    <strong>Thesis:</strong> Correzione automatica di varianti ortografiche in testi storici<br>
+                    <strong>Supervisor:</strong> Prof. Alessandro Lenci<br>
+                    <strong>Grade:</strong> 110/110 cum laude<br>
+                </div>
         </div>
     </section>
 
     <section id="publications">
         <h2>Publications</h2>
-        <p id="loading-msg">Fetching latest papers from DBLP database...</p>
-        <ul id="dblp-publications" class="pub-list">
-            </ul>
+        <div id="loading-pub" style="font-family: 'Bebas Neue'; letter-spacing: 1px;">Loading papers from DBLP...</div>
+        <ul id="dblp-list" class="pub-list"></ul>
     </section>
 
-    <section id="contact" style="background: var(--bg-light);">
-        <h2>Get in Touch</h2>
-        <p>I am always open to collaborations and academic exchange.</p>
-        <div style="margin-top: 2rem;">
-            <p><strong>Email:</strong> <a href="mailto:your.name@university.edu" style="color: var(--accent-color);">your.name@university.edu</a></p>
-            <p><strong>Address:</strong> Office 101, Dept. of Science, University St. 123</p>
-        </div>
+    <section id="contact" style="text-align: center; background-color: #fff;">
+        <h2>Contact</h2>
+        <p> I'm open to opportunities and collaborations.</p>
+        <p>Email: <a href="mailto:chiara.pugliese@iit.cnr.it" style="color: var(--link-color); font-weight: 800;">chiara.pugliese@iit.cnr.it</a></p>
+        <p>Pisa, Italy</p>
     </section>
 
     <footer>
-        <div class="social-links">
-            <a href="#">LinkedIn</a>
-            <a href="#">Google Scholar</a>
-            <a href="#">Twitter/X</a>
-        </div>
-        <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">
-            &copy; 2024 Professional Researcher Profile. Powered by DBLP API.
-        </p>
+        <p>&copy; 2026 | CHIARA PUGLIESE | Powered by DBLP API</p>
     </footer>
 
     <script>
-        async function fetchMyPublications() {
-            // --- CONFIGURATION ---
-            // Sostituisci "Mario_Rossi" con il tuo nome DBLP (formato Nome_Cognome)
-            const dblpAuthorName = "Chiara_Pugliese"; 
-            const apiUrl = `https://dblp.org/search/publ/api?q=author:${dblpAuthorName}:&format=json&h=50`;
-            
-            const container = document.getElementById('dblp-publications');
-            const loader = document.getElementById('loading-msg');
+        const DBLP_ID = "Chiara_Pugliese"; 
 
+        async function loadDBLP() {
+            const container = document.getElementById('dblp-list');
+            const loader = document.getElementById('loading-pub');
+            
             try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) throw new Error("Network error");
-                
+                const response = await fetch(`https://dblp.org/search/publ/api?q=author:${DBLP_ID}:&format=json&h=100`);
                 const data = await response.json();
                 const hits = data.result.hits.hit;
 
-                if (!hits || hits.length === 0) {
-                    loader.innerText = "No publications found for this author.";
+                if (!hits) {
+                    loader.innerText = "No publications found.";
                     return;
                 }
 
                 loader.style.display = 'none';
 
-                hits.forEach(item => {
-                    const info = item.info;
-                    
-                    // Gestione autori (DBLP può restituire un oggetto o una stringa)
-                    let authorsList = "";
+                hits.forEach(h => {
+                    const info = h.info;
+                    let authorNames = "";
                     if (info.authors && info.authors.author) {
-                        const authors = Array.isArray(info.authors.author) ? info.authors.author : [info.authors.author];
-                        authorsList = authors.map(a => (typeof a === 'object' ? a.text : a)).join(', ');
+                        const authData = info.authors.author;
+                        const authArray = Array.isArray(authData) ? authData : [authData];
+                        authorNames = authArray.map(a => (typeof a === 'object' ? a.text : a)).join(', ');
                     }
 
                     const li = document.createElement('li');
+                    li.className = 'pub-item';
                     li.innerHTML = `
-                        <span class="pub-year">${info.year}</span>
-                        <span class="pub-title">${info.title}</span>
-                        <span class="pub-authors">${authorsList}</span>
-                        <span class="pub-venue">${info.venue}</span>
-                        <a href="${info.ee}" target="_blank" class="pub-link">Read Paper</a>
+                        <span class="year">${info.year}</span>
+                        <span class="title">${info.title}</span>
+                        <span class="authors">${authorNames}</span>
+                        <span class="venue">${info.venue}</span>
+                        <br><a href="${info.ee}" target="_blank" style="font-size: 0.7rem; color: var(--link-color); text-decoration:none; font-weight:800; text-transform:uppercase;">[Source]</a>
                     `;
                     container.appendChild(li);
                 });
-
-            } catch (error) {
-                console.error("DBLP Error:", error);
-                loader.innerText = "Unable to load publications at this time.";
+            } catch (e) {
+                loader.innerText = "Error loading publications.";
             }
         }
+        window.onload = loadDBLP;
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', fetchMyPublications);
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 </html>
